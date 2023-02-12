@@ -8,21 +8,18 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-22.04'
+  demands:
+  - npm
 
 variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.web/wwwroot'
   dotnetSdkVersion: '6.x'
 
-# steps:
-# - script: dotnet build --configuration $(buildConfiguration)
-#   displayName: 'dotnet build $(buildConfiguration)'
-
 steps:
 - task: UseDotNet@2
   displayName: 'Use .NET SDK $(dotnetSdkVersion)'
   inputs:
-    packageType: sdk
     version: '$(dotnetSdkVersion)'
 
 - task: Npm@1
